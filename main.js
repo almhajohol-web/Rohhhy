@@ -1,0 +1,40 @@
+var S={at:0,done:[],fav:[]};
+try{var x=JSON.parse(localStorage.getItem('vk'));if(x)S=x}catch(e){}
+function save(){try{localStorage.setItem('vk',JSON.stringify(S))}catch(e){}}
+function $(i){return document.getElementById(i)}
+function lines(a,cls){return a.map(function(t,i){return '<div class="ln" style="animation-delay:'+(i*.9)+'s">'+t+'</div>'}).join('')}
+var reasons=['ضحكتك بتخلي المكان أهدى.','طريقتك في الاهتمام بتفاصيل الناس.','هدوءك اللي بيطمّن.','إنك بتفضلي نفسك حتى وقت التعب.','كلامك بيوصل من غير ما يعلى.','إنك مختلفة من غير ما تحاولي.','طيبتك اللي مش محتاجة تثبتيها.','حضورك بيغيّر شكل اليوم.','صدقك حتى لما يكون صعب.','عيونك لما بتسمعي بجد.','إنك بتستاهلي أحسن حاجة.','إنك كارن، وكفاية.'];
+var words=['في إحساس بيكبر من غير ما أقوله.','بحاول أكون كلمة حلوة تفضل معاكي.','وجودك عندي له قيمة مش بعرف أشرحها.','مش لازم تكوني قوية طول الوقت.','اللي بتتمناه ليكي، بتمناه أكتر.','وكل ما أكتب، الكلام بيقل قدام اللي حاسه.'];
+var openw=[['لما تكوني زعلانة','الزعل مش بيدوم، وانتي أقوى منه. خدي نفس، وأنا بدعيلك إن قلبك يرتاح.'],['لما تكوني وحشاني','لو وحشتك زي ما بتوحشيني، يبقى احنا الاتنين محظوظين إن في حد نفتقده.'],['لما تكوني مبسوطة','فرحتك جميلة عليكي. خليها تاخد وقتها، وافرحي من قلبك.'],['لما تحتاجي تبتسمي','ابتسمي، لأن الدنيا بتبقى أخف لما انتي بتضحكي.'],['لما تحسي إن الدنيا صعبة','صعبة، أيوه. بس انتي عدّيتي قبل كده وهتعدّي دي كمان. مش لوحدك.'],['لما تحتاجي تشجيع','انتي قادرة أكتر مما بتتخيلي. خطوة صغيرة النهارده كفاية.'],['لما تحسي إنك مش كفاية','الإحساس ده كدّاب. انتي كفاية، وأكتر كمان.'],['لما تحبي تسمعي كلام حلو','انتي حد ثمين، ووجودك نعمة لكل اللي حواليكي.'],['لما تحتاجي رسالة مني','أنا هنا، بفكر فيكي، وبتمنالك يوم هادي وقلب مطمّن.'],['في أي وقت تفتكريني فيه','أفتكريني ببساطة، وعرفي إن في حد بيبتسم لما بيفتكرك.']];
+var msgs=['انتي من الحاجات الحلوة القليلة اللي بتحصل.','كل يوم بتمناكي فيه بخير.','هدوءك بيعلّمني حاجات.','لو الكلام بيتقاس، كان مش هيكفي.','خليكي زي ما انتي.','بتستاهلي تتحبي بهدوء وصدق.','ابتسامتك بتفرق.','أنا ممتن إني عرفتك.','قلبك نضيف، وده بيبان.','اتمنالك كل خير.','في ناس بتبقى سبب إن اليوم يعدي أحلى، وانتي منهم.','اهتمامك مش عادي.','مهما حصل، انتي مهمة.','يا رب تفضلي مبسوطة.','وجودك بيفرق أكتر من ما تتخيلي.','الكلام الحلو لسه ناقص قدامك.'];
+var stars=['انتي نور حتى في أصعب ليل.','أمنيتي إنك تبقي مرتاحة.','في كل نجمة، دعوة ليكي.','السما واسعة، وانتي ليكي فيها مكان.','أحلامك تستاهل تتحقق.','وجودك بيهدّي.','ليلتك هادية يا كارن.'];
+var flows=['وردة لهدوءك.','وردة لضحكتك.','وردة لطيبتك.','وردة لقوتك.','وردة لأحلامك.','وردة لقلبك.','وردة عشان تفتكري إنك غالية.'];
+var gold=['كارن،','لو في حاجة عايزك تاخديها من الموقع ده كله، فهي إنك مميزة بجد.','مش عشان حاجة عملتيها، لكن عشان انتي كده.','اتمنالك الراحة، وأحلامك تتحقق، وقلبك يفضل مطمّن.','ولو احتجتي كلمة، هتلاقي هنا مكان يستناكي.'];
+function stage(h,en,body){return '<h1 class="en">'+en+'</h1><h2>'+h+'</h2>'+body}
+function reveal(el,list,key){var n=0;el.innerHTML='';list.forEach(function(){});}
+var CH=[
+{en:'A LETTER TO KAREN',ar:'رسالة لكارن',r:function(){return '<div class="paper">'+lines(['كارن،','مش عارف أبدأ منين، فبدأت ببساطة: شكراً إنك موجودة.','في ناس وجودها بيغيّر شكل اليوم من غير ما تعمل حاجة، وانتي منهم.','عملتلك المكان ده عشان في كلام كتير نفسي توصلك، وكلمة واحدة مش كفاية.','اقري براحتك، وافتحي اللي تحبيه وقت ما تحبي.','— فيرو'])+'</div>'}},
+{en:'WHY YOU ARE SPECIAL',ar:'ليه انتي مميزة',r:function(){return reasons.map(function(t,i){return '<div class="card ln" style="animation-delay:'+i*.25+'s"><span class="mini">'+(i+1)+'</span><br>'+t+'</div>'}).join('')}},
+{en:'WORDS FROM MY HEART',ar:'كلام من القلب',r:function(){return '<div class="paper">'+lines(words)+'</div>'}},
+{en:'OPEN WHEN...',ar:'افتحي لما...',r:function(){return '<div class="grid">'+openw.map(function(o,i){return '<div class="card" data-o="'+i+'">'+o[0]+'</div>'}).join('')+'</div><div id="ob" class="paper" style="display:none;margin-top:16px"></div>'},
+ a:function(){document.querySelectorAll('[data-o]').forEach(function(c){c.onclick=function(){var b=$('ob');b.style.display='block';b.innerHTML='<div class="fade">'+openw[c.dataset.o][1]+'<div class="sig">— فيرو ♡</div></div>'}})}},
+{en:'LITTLE MESSAGES',ar:'رسائل صغيرة',r:function(){return '<div class="card" style="min-height:140px;display:flex;align-items:center;justify-content:center"><div id="m" class="fade"></div></div><div style="text-align:center"><button class="btn" id="mp">‹</button> <button class="btn" id="mf">♡</button> <button class="btn" id="mr">؟</button> <button class="btn" id="mxn">›</button></div><p class="mini" id="fc" style="text-align:center"></p>'},
+ a:function(){var i=0;function sh(){$('m').className='';void $('m').offsetWidth;$('m').className='fade';$('m').textContent=msgs[i];$('mf').textContent=S.fav.indexOf(i)>=0?'♥':'♡';$('fc').textContent='المفضلة: '+S.fav.length}
+ $('mp').onclick=function(){i=(i+msgs.length-1)%msgs.length;sh()};$('mxn').onclick=function(){i=(i+1)%msgs.length;sh()};$('mr').onclick=function(){i=Math.floor(Math.random()*msgs.length);sh()};
+ $('mf').onclick=function(){var k=S.fav.indexOf(i);if(k>=0)S.fav.splice(k,1);else S.fav.push(i);save();sh()};sh()}},
+{en:'OUR LITTLE UNIVERSE',ar:'كوننا الصغير',r:function(){return '<div class="sky" id="sk"></div><div class="card" id="sm" style="margin-top:14px">اضغطي على نجمة</div>'},
+ a:function(){stars.forEach(function(t,i){var b=document.createElement('button');b.className='st';b.style.left=(10+(i*37)%78)+'%';b.style.top=(10+(i*53)%75)+'%';b.onclick=function(){b.classList.add('on');$('sm').textContent=t};$('sk').appendChild(b)})}},
+{en:'THE SECRET GARDEN',ar:'الحديقة السرية',r:function(){return '<div style="text-align:center">'+flows.map(function(f,i){return '<button class="fl" data-f="'+i+'">🌹</button>'}).join('')+'</div><div class="card" id="fm" style="margin-top:14px">اختاري وردة</div>'},
+ a:function(){document.querySelectorAll('[data-f]').forEach(function(b){b.onclick=function(){b.style.filter='none';$('fm').textContent=flows[b.dataset.f]}})}},
+{en:'THE GOLDEN ENVELOPE',ar:'الظرف الذهبي',r:function(){return '<div style="text-align:center"><button class="btn" id="ge">افتحي الظرف</button></div><div class="paper" id="gb" style="display:none;margin-top:18px;border:2px solid var(--go)"></div>'},
+ a:function(){$('ge').onclick=function(){$('ge').style.display='none';$('gb').style.display='block';$('gb').innerHTML=lines(gold)}}},
+{en:'FOREVER IN THIS MOMENT',ar:'النهاية',r:function(){return '<div style="text-align:center"><div class="en ln" style="font-size:34px;color:var(--go)">VERO ♡ KAREN</div><p class="ln" style="animation-delay:1.2s">يمكن مش كل الكلام بيتقال، ومش كل إحساس بيتوصف... بس حبيت أعملك حاجة تفكرك إنك تستاهلي كل الكلام الحلو.</p><p class="ln sig" style="animation-delay:2.4s">Made with love,<br>Vero ♡</p><button class="btn ln" style="animation-delay:3s" id="rp">REPLAY</button></div>'},
+ a:function(){$('rp').onclick=function(){S.done=[];S.at=0;save();show()}}}
+];
+function show(){var c=CH[S.at];$('view').innerHTML=stage(c.ar,String(S.at+1).padStart(2,'0')+' — '+c.en,c.r());if(c.a)c.a();
+ if(S.done.indexOf(S.at)<0)S.done.push(S.at);save();$('bar').firstChild.style.width=(S.done.length/CH.length*100)+'%';window.scrollTo(0,0)}
+function go(n){S.at=Math.max(0,Math.min(CH.length-1,n));show()}
+$('go').onclick=function(){$('env').classList.add('open');setTimeout(function(){$('intro').style.opacity=0;$('app').style.display='block';$('nav').style.display='flex';show();setTimeout(function(){$('intro').style.display='none'},1500)},1600)};
+$('nx').onclick=function(){go(S.at+1)};$('pv').onclick=function(){go(S.at-1)};
+$('mn').onclick=function(){var m=$('menu');m.innerHTML=CH.map(function(c,i){return '<button data-c="'+i+'">'+(S.done.indexOf(i)>=0?'✓ ':'')+c.ar+'</button>'}).join('')+'<button id="cl" class="en" style="text-align:center;color:var(--go)">CLOSE</button>';m.style.display='block';
+ m.querySelectorAll('[data-c]').forEach(function(b){b.onclick=function(){m.style.display='none';go(+b.dataset.c)}});$('cl').onclick=function(){m.style.display='none'}};
